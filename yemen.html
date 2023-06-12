@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <meta charset="UTF-8">
+        <h3 id="mitt_tall"></h3>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+</head>
+<body>
+        <h1>Turkyië clicker</h1>
+        <p id="test">Click glorious flag to get more Lira</p>
+        
+
+        <button id="knapp"><img src="tirki.jpg" alt=""></button>
+
+
+        <script> //starter javascript
+
+                var tall = 0
+
+                function skriv_tekst(){
+                        console.log(tall)
+
+                        tall += 1
+                        document.querySelector('#mitt_tall').innerHTML = tall
+
+                        if (tall > 9999) {
+                                document.querySelector('#test').innerHTML = 'congratulations! you collected enough Lira to send another EU application!'
+                        }
+
+                        if (tall < 9999 ) {
+                                document.querySelector('#test').innerHTML = 'collect more lira for glorious Turkyië'   
+                        }
+                        document.querySelector('#mitt_tall').innterhtml = tall
+                }
+                
+                document.querySelector('#test').innerHTML = 'Click glorious flag to get more Lira'
+
+                document.querySelector('#knapp').addEventListener('click', skriv_tekst )
+
+
+
+                var tekst = "AAAAAAAA";
+        
+               
+        
+                console.log("detter er en console beskjed")
+        
+                var hemmelig_passord = "Mitt_passord1"
+        </script>       
+</body>
+</html>

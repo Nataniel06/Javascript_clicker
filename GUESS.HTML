@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="walpapr.css">
+
+
+</head>
+<body>
+    <!-- Guess the number game
+    - maskinen må lage et tilfeldig tall OK
+    - brukeren må kunne skrive inn hvilklet tall som gjettes OK
+    - en knapp for å "sende" tallet OK 
+    - når knappen trykkes må vi hente verdien fra feltet vi skriver tallet inn OK
+    - finne ut om tallet var riktig, for høyt eller lavt OK
+    - tilbakemelding til brukeren, skrive ut en beskjed
+
+    -->
+    <audio id="myAudio">
+        
+        <source src="WiiWare - Gnomz OST_ Celtic Rock.mp3" type="audio/mpeg">
+        
+    </audio>
+
+    <audio id="myAudio2">
+        
+        <source src="no.mp3" type="audio/mpeg">
+        
+    </audio>
+
+
+  
+    <h1> Gjett tallet!!! </h1>
+
+    
+        <input type="text" name="yourguess" id="yourguess">
+        <h2 id = "timer">tid: 0!!!</h2>
+        <button id="EL_button"><img src="thinker.jpg" alt="" height="120px" width="160px"></button>
+        <p>trykk på knappen for å starte på nytt!!! </p>
+        <button id="restarte"><img src="no.jpg" alt="" height="120px" width="160px"></button>       
+        <p id="gjettinger"></p>
+        <p id="svar"></p>
+        <p id="skore"></p>
+        
+
+        
+    <script>
+        var score = document.querySelector('#skore')
+        var gjette_felt = document.querySelector('#yourguess')
+        var knapp = document.querySelector('#EL_button')
+        var respons = document.querySelector('#svar')
+        var EL_antall_gjettinger = document.querySelector('#gjettinger')
+        var restart_knapp = document.querySelector('#restarte')
+        var timer = document.querySelector('#timer')
+        var riktig = true
+
+        var antall_gjettinger = 0
+
+        var x = document.getElementById("myAudio"); 
+
+            function playAudio() { 
+            x.play(); 
+            } 
+
+            function pauseAudio() { 
+            x.pause(); 
+            } 
+
+
+
+        var y = document.getElementById("myAudio2"); 
+
+            function playAudio2() { 
+            y.play(); 
+            } 
+
+
+
+        function gjette(){ //funksjon som kjører bår vi trykker på knapp
+            //hente tallet vi skrev inn.
+            if (riktig == true) {
+                console.log(gjette_felt.value)
+                console.log("Riktig tall er ", EL_hemmelig_tall)
+
+                
+
+
+                
+
+
+                if ((gjette_felt.value)==(EL_hemmelig_tall)) {
+                    respons.innerHTML = '<img src="ygtr.jpg" alt="">'
+                    riktig = false
+                    
+                    
+                } else if ((gjette_felt.value)!=(EL_hemmelig_tall)) {
+                    respons.innerHTML = '<img src="kys.jpg" alt="">'
+                    
+                }
+                antall_gjettinger += 1
+                EL_antall_gjettinger.innerHTML = 'Du har prøvd '+ antall_gjettinger + ' gang(er)!!!'
+            }
+            else if (riktig == false){
+                
+            }
+
+            
+
+        }
+        function restart(){
+            console.log("restarted")
+            EL_hemmelig_tall = Math.floor(Math.random()*100)
+            antall_gjettinger = 0
+            EL_antall_gjettinger.innerHTML = ""
+            teller = 0
+            riktig = true
+
+        }
+        knapp.addEventListener('click', gjette )
+
+        restart_knapp.addEventListener('click', restart )
+        
+        var EL_hemmelig_tall = Math.floor(Math.random()*100)
+        console.log(EL_hemmelig_tall)
+        var teller = 0
+        function mytimer(){
+            if (riktig == true){
+            console.log('timer tick'+ teller)
+            teller++
+            timer.innerHTML = 'tid brukt: ' + teller + '!!!'
+            playAudio();
+            }
+            else if(riktig == false)   {
+
+            }
+
+
+
+        }
+
+        setInterval(mytimer, 1000)
+
+
+        //EL_button.querySelector('click', EL_hemmelig_tall)
+        function activateBananas() {
+    
+            var $bananas = $(), qt = 20;
+            
+            for (var i = 0; i < qt; ++i) {
+                var $banana = $('<img class="banana" src="http://piq.codeus.net/static/media/userpics/piq_45025_400x400.png">');
+                $banana.css({
+                    'left': (Math.random() * $('#site').width()) + 'px',
+                    'top': (- Math.random() * $('#site').height()) + 'px'
+                });
+                $bananas = $bananas.add($banana);
+            }
+            $('#banana').prepend($bananas);
+
+            $bananas.animate({
+                top: "500px",
+            }, Math.random() + 5000, function(){
+                $(this).remove();
+                // run again when all 20 bananas hit the floor
+                if (--qt < 1) {
+                    activateBananas();
+                }
+            });
+        }
+        activateBananas();
+    </script>
+
+
+
+</body>
+</html>

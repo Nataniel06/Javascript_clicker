@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="clicker.css">
+
+
+</head>
+<body>
+    <div id="container">
+        <div class='a'></div>
+            <div class='b'></div>
+            <div class='c'></div>
+        </div>
+    <div class="bg"></div>
+    <div class="bg bg2"></div>
+    <div class="bg bg3"></div>
+    <div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+        <div class="wave"></div>
+    </div>
+    <div class="tittel"><img src="titel.png" alt="" height="120px"></div>
+    <h1 id="mitt_tall"></h1>
+
+    
+    <!-- clicker 
+    design, skisse, kladd
+    knapp å trykke på
+    oppgradering, du kjøper oppgradering også booster den deg
+    bygninger some hjelper deg
+    lucky catch, noe kommer på skjermen og hvis du trykker på det så får du penger
+    frenzy, en form for lucky catch som setter opp farten din i en liten periode
+    prestige(kansje), man kan starte spillet på nytt med mer penger
+    
+    achievments(kansje), gjør du visse ting kan du få et achievment
+
+
+    -->
+    <button id="knapp"><img src="2x/jordanbutton1@2x.png" alt="" height="500px"></button>
+    <div class="game">
+    
+    <h2> trykk på knappen for å få nye jordans</h2>
+    </div>
+    <div class="knappjordan">
+
+    <button id="upg"><img src="bluerhordan.webp" alt="" height="200px"></button>
+    <h3 id="price">Blå Jordans oppgradering: 10</h3>   
+    <button id="upg1"><img src="jordaneee.webp" alt="" height="200px"></button>
+    <h3 id="price1">Grønn Jordans oppgradering: 1000</h3>   
+    <button id="upg2"><img src="jordanes.webp" alt="" height="200px"></button>
+    <h3 id="price2">Rød Jordans oppgradering: 100000</h3> 
+    <button id="upg3"><img src="goldjor.webp" alt="" height="200px"></button>
+    <h3 id="price3">Gull Jordans oppgradering: 10000000</h3>   
+    </div> 
+    <div class="bygningjordan">
+    <button id="gold_catch"><img src="flyjordans@2x.png" alt=""height="100px"> </button>
+    <button id="building"><img src="jordan factory@2x.png" alt="" height="300px"></button>
+    <h3 id="pricefactory">Jordans fabrikk: 100</h3>    
+    <button id="building1"><img src="jordanfactorio.png" alt="" height="300px"></button>
+    <h3 id="pricefactory1">Stor Jordans fabrikk: 10000</h3>    
+    <button id="building2"><img src="fakejordanfactory.png" alt="" height="300px"></button>
+    <h3 id="pricefactory2">Fake Jordans fabrikk: 100000</h3>    
+    </div>
+
+    
+    <script>
+        var pris = 10
+        var pris1 = 1000
+        var pris2 = 100000
+        var pris3 = 10000000
+        var prispassive = 100
+        var prispassive1 = 10000
+        var prispassive2 = 100000
+        var penger = 0
+        var click = 1
+        //var gold_move_left = 0
+        var EL_gold_catch = document.querySelector("#gold_catch")
+        var EL_upg = document.querySelector("#upg")
+        var EL_upg1 = document.querySelector("#upg1")
+        var EL_upg2 = document.querySelector("#upg2")
+        var EL_upg3 = document.querySelector("#upg3")
+        var EL_pris = document.querySelector("#pris")
+        var EL_penger = document.querySelector("#knapp")
+        var EL_jordansfactory = document.querySelector("#building")
+        var EL_jordansfactory1 = document.querySelector("#building1")
+        var EL_jordansfactory2 = document.querySelector("#building2")
+        var EL_tall = document.querySelector('#mitt_tall')
+        var pris_bigor = 1.5
+        var factory_jordans = 0
+
+
+        function myTimeout(){
+            console.log("timer ferdig")
+        }
+        function stopTimer(){
+            clearTimeout(timer)
+        }
+
+        var timer = setTimeout(myTimeout, 5000)
+
+
+
+        //gold_move_left += 15
+        //EL_gold_catch.style.left = gold_move_left + "px"
+
+
+        function klick(){
+
+
+
+            console.log(penger)
+
+            penger += click
+
+            EL_tall.innerHTML = Math.floor(penger)
+
+        }
+
+        function gold_catch(){
+            penger += 100000
+
+            penger += click
+
+            EL_tall.innerHTML = penger
+        }
+
+        function oppgradering(){
+            if (penger >= pris){
+
+                click += 1
+                penger -= pris
+             
+                pris *= pris_bigor
+                document.querySelector('#price').innerHTML = "Blå Jordans oppgradering: " + Math.floor(pris)
+            }
+        }
+        function oppgradering1(){
+            if (penger >= pris1){
+
+                click += 5
+                penger -= pris1
+             
+                pris1 *= pris_bigor
+                document.querySelector('#price1').innerHTML = "Grønn Jordans oppgradering: " + Math.floor(pris1)
+            }
+        
+        }
+
+        function oppgradering2(){
+            if (penger >= pris2){
+
+                click += 1000
+                penger -= pris2
+             
+                pris2 *= pris_bigor
+                document.querySelector('#price2').innerHTML = "Rød Jordans oppgradering: " + Math.floor(pris2)
+            }
+        
+        }
+        function oppgradering3(){
+            if (penger >= pris3){
+
+                click += 15000
+                penger -= pris3
+             
+                pris3 *= pris_bigor
+                document.querySelector('#price3').innerHTML = "Gold Jordans oppgradering: " + Math.floor(pris3)
+            }
+        
+        }
+        function buy_jordansfactory(){
+            if (penger >= prispassive){
+                penger -= prispassive
+                prispassive *= pris_bigor
+                factory_jordans += 0.1
+                
+                document.querySelector('#pricefactory').innerHTML = "Jordans fabrikk: " + Math.floor(prispassive)
+                
+            }
+
+
+        }
+
+        function buy_jordansfactory1(){
+            if (penger >= prispassive1){
+                penger -= prispassive1
+                prispassive1 *= pris_bigor
+                factory_jordans += 1.2
+                
+                document.querySelector('#pricefactory1').innerHTML = "Stor Jordans fabrikk: " + Math.floor(prispassive1)
+                
+            }
+
+
+        }
+        function buy_jordansfactory2(){
+            if (penger >= prispassive2){
+                penger -= prispassive2
+                prispassive2 *= pris_bigor
+                factory_jordans += 2
+                
+                document.querySelector('#pricefactory2').innerHTML = "Fake Jordans fabrikk: " + Math.floor(prispassive2)
+                
+            }
+
+
+        }
+        function generatejordans(){
+
+            console.log('jordans')
+            penger += factory_jordans
+            EL_tall.innerHTML = Math.floor(penger)
+        }
+
+                
+                EL_penger.addEventListener('click', klick)
+                EL_upg.addEventListener('click', oppgradering)
+                EL_gold_catch.addEventListener('click', gold_catch)
+                EL_jordansfactory.addEventListener('click', buy_jordansfactory)
+                EL_upg1.addEventListener('click', oppgradering1)
+                EL_jordansfactory1.addEventListener('click', buy_jordansfactory1)
+                EL_upg2.addEventListener('click', oppgradering2)
+                EL_upg3.addEventListener('click', oppgradering3)
+                EL_jordansfactory2.addEventListener('click', buy_jordansfactory2)    
+
+        var jordansfactory_timer = setInterval(generatejordans, 10)
+    </script>
+    
+</body>
+</html>

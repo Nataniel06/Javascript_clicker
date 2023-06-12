@@ -1,0 +1,8 @@
+body {
+    background-image: url(backr.png);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
